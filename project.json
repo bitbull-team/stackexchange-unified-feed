@@ -1,0 +1,8 @@
+{
+  "name": "StackexchangeFeedAggregator",
+  "description": "A feed that aggregate all site-specific feeds on Stackexchange for a given user",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::963449369199:role/StackexchangeFeedAggregator_lambda_function",
+  "environment": {}
+}
