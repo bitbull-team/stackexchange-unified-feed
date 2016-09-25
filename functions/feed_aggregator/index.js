@@ -3,6 +3,7 @@
 const request = require('request-promise-native');
 const $ = require('cheerio');
 const moment = require('moment');
+const URL = require('url-parse');
 
 exports.handle = (event, context, callback) => {
 
@@ -22,9 +23,12 @@ exports.handle = (event, context, callback) => {
 
         var subSitesFeedsRequests = [];
         $('.account-container .account-site h2 a', stackexchangeProfileHtml).each(function (i, el) {
-            var subSiteFeedUrl = $(el).attr('href').replace('/users/', '/feeds/user/');
+            var subSiteUrlParts = new URL($(el).attr('href')),
+                subSiteUserId = subSiteUrlParts.pathname.split('/')[2];
 
-            subSitesFeedsRequests.push(request(subSiteFeedUrl, requestOptions));
+            subSiteUrlParts.set('pathname', '/feeds/user/' + subSiteUserId);
+
+            subSitesFeedsRequests.push(request(subSiteUrlParts.href, requestOptions));
         });
 
         Promise.all(subSitesFeedsRequests)

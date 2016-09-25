@@ -3,6 +3,7 @@
     "cheerio": "^0.22.0",
     "moment": "^2.15.0",
     "request": "^2.74.0",
-    "request-promise-native": "^1.0.3"
+    "request-promise-native": "^1.0.3",
+    "url-parse": "^1.1.3"
   }
 }
